@@ -1,0 +1,31 @@
+<nz-card>
+  <nz-table [nzData]="items" [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Qtd.</th>
+        <th>Preço</th>
+        <th>Ativo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.quantity }}</td> 
+        <td>{{ (item.price | currency: 'BRL')?.replace('R$', 'R$ ') }}</td>
+        <td>{{ item.isActive ? "Ativo" : "Desativado" }}</td>
+        <td style="display: flex; flex-wrap: wrap;">
+          <button nz-button class="mr-4" (click)="editItem(item)"><span nz-icon nzType="edit" nzTheme="outline"></span> Editar</button>
+          <button nz-button class="icon-align" (click)="openModalConfirm(item)"><span nz-icon nzType="delete" nzTheme="outline"></span> Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <button nz-button nzType="primary" (click)="openModalForm()">
+    Cadastrar <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+  </button>
+</nz-card>

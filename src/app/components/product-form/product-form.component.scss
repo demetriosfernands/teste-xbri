@@ -1,0 +1,13 @@
+.error-select {
+    border-color: red !important; // Mudar a cor da borda para vermelho
+  }
+  nz-form-item {
+    display: flex;
+    flex-direction: column; 
+    nz-form-label {
+        text-align: left;
+    }
+    nz-form-control{
+        margin-bottom: 8px;
+    }
+  }

@@ -1,0 +1,49 @@
+<form nz-form [formGroup]="itemForm">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="name">Nome do Item</nz-form-label>
+      <nz-form-control nzErrorTip="Nome é obrigatório e até 70 caracteres"> 
+        <input nz-input formControlName="name" [nzStatus]="itemForm.get('name')?.invalid && isSubmitted ? 'error' : ''" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="quantity">Quantidade</nz-form-label>
+      <nz-form-control>
+        <nz-input-number formControlName="quantity" id="quantity" [nzMin]="0" 
+        [nzStatus]="itemForm.get('quantity')?.invalid && isSubmitted ? 'error' : ''">
+      </nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="category">Categoria</nz-form-label>
+      <nz-form-control nzErrorTip="Categoria é obrigatória">
+        <nz-select formControlName="category" [nzStatus]="itemForm.get('category')?.invalid && isSubmitted ? 'error' : ''">
+          <nz-option nzValue="Automovel" nzLabel="Automovel"></nz-option>
+          <nz-option nzValue="Caminhão" nzLabel="Caminhão"></nz-option>
+          <nz-option nzValue="Avião" nzLabel="Avião"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label nzFor="price">Preço</nz-form-label>
+      <nz-form-control>
+        <input nz-input [currencyMask]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" 
+        formControlName="price" [nzStatus]="itemForm.get('price')?.invalid && isSubmitted ? 'error' : ''" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <label nz-checkbox formControlName="isActive"  [ngClass]="{'ant-input-status-error': itemForm.get('isActive')?.invalid && isSubmitted}">Ativo</label>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <!-- Outros campos... -->
+  
+    <button nz-button nzType="primary" class="mr-4" style="margin-top: 20px;" (click)="onSubmit()">
+      <span nz-icon nzType="save" nzTheme="outline"></span> Salvar
+    </button>
+    <button nz-button (click)="closeModal()">Cancelar</button>
+  </form>
